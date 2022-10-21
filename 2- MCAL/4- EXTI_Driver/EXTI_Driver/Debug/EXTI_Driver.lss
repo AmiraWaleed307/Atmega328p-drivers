@@ -1,0 +1,788 @@
+
+EXTI_Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000586  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000512  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000a  00800100  00800100  00000586  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000586  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000005b8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000108  00000000  00000000  000005f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001110  00000000  00000000  00000700  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000008a5  00000000  00000000  00001810  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000007de  00000000  00000000  000020b5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000035c  00000000  00000000  00002894  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000796  00000000  00000000  00002bf0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000bb6  00000000  00000000  00003386  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000d8  00000000  00000000  00003f3c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <__vector_1>
+   8:	0c 94 7d 01 	jmp	0x2fa	; 0x2fa <__vector_2>
+   c:	0c 94 a6 01 	jmp	0x34c	; 0x34c <__vector_3>
+  10:	0c 94 cf 01 	jmp	0x39e	; 0x39e <__vector_4>
+  14:	0c 94 f8 01 	jmp	0x3f0	; 0x3f0 <__vector_5>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	aa 30       	cpi	r26, 0x0A	; 10
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 57 00 	call	0xae	; 0xae <main>
+  88:	0c 94 87 02 	jmp	0x50e	; 0x50e <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <Toggle_LED1>:
+    }
+}
+
+void Toggle_LED1 (void)
+{
+	MGPIO_void_TogglePin (GPIO_PORTD, 5);
+  90:	65 e0       	ldi	r22, 0x05	; 5
+  92:	82 e0       	ldi	r24, 0x02	; 2
+  94:	0e 94 74 02 	call	0x4e8	; 0x4e8 <MGPIO_void_TogglePin>
+  98:	08 95       	ret
+
+0000009a <Toggle_LED2>:
+}
+void Toggle_LED2 (void)
+{
+	MGPIO_void_TogglePin (GPIO_PORTC, 5);
+  9a:	65 e0       	ldi	r22, 0x05	; 5
+  9c:	81 e0       	ldi	r24, 0x01	; 1
+  9e:	0e 94 74 02 	call	0x4e8	; 0x4e8 <MGPIO_void_TogglePin>
+  a2:	08 95       	ret
+
+000000a4 <Toggle_LED3>:
+}
+void Toggle_LED3 (void)
+{
+	MGPIO_void_TogglePin (GPIO_PORTB, 2);
+  a4:	62 e0       	ldi	r22, 0x02	; 2
+  a6:	80 e0       	ldi	r24, 0x00	; 0
+  a8:	0e 94 74 02 	call	0x4e8	; 0x4e8 <MGPIO_void_TogglePin>
+  ac:	08 95       	ret
+
+000000ae <main>:
+
+int main(void)
+{
+	
+	
+	MGPIO_void_SetPinDirection (GPIO_PORTD, 5,GPIO_OUTPUT);
+  ae:	41 e0       	ldi	r20, 0x01	; 1
+  b0:	65 e0       	ldi	r22, 0x05	; 5
+  b2:	82 e0       	ldi	r24, 0x02	; 2
+  b4:	0e 94 33 02 	call	0x466	; 0x466 <MGPIO_void_SetPinDirection>
+	MGPIO_void_SetPinDirection (GPIO_PORTC, 5,GPIO_OUTPUT);
+  b8:	41 e0       	ldi	r20, 0x01	; 1
+  ba:	65 e0       	ldi	r22, 0x05	; 5
+  bc:	81 e0       	ldi	r24, 0x01	; 1
+  be:	0e 94 33 02 	call	0x466	; 0x466 <MGPIO_void_SetPinDirection>
+	MGPIO_void_SetPinDirection (GPIO_PORTB, 2,GPIO_OUTPUT);
+  c2:	41 e0       	ldi	r20, 0x01	; 1
+  c4:	62 e0       	ldi	r22, 0x02	; 2
+  c6:	80 e0       	ldi	r24, 0x00	; 0
+  c8:	0e 94 33 02 	call	0x466	; 0x466 <MGPIO_void_SetPinDirection>
+	MGPIO_void_SetPinDirection (GPIO_PORTD, 2,GPIO_INPUT_PULLUP);
+  cc:	42 e0       	ldi	r20, 0x02	; 2
+  ce:	62 e0       	ldi	r22, 0x02	; 2
+  d0:	82 e0       	ldi	r24, 0x02	; 2
+  d2:	0e 94 33 02 	call	0x466	; 0x466 <MGPIO_void_SetPinDirection>
+	MGPIO_void_SetPinDirection (GPIO_PORTD, 3,GPIO_INPUT_PULLUP);
+  d6:	42 e0       	ldi	r20, 0x02	; 2
+  d8:	63 e0       	ldi	r22, 0x03	; 3
+  da:	82 e0       	ldi	r24, 0x02	; 2
+  dc:	0e 94 33 02 	call	0x466	; 0x466 <MGPIO_void_SetPinDirection>
+	MGPIO_void_SetPinDirection (GPIO_PORTB, 6,GPIO_INPUT_PULLUP);
+  e0:	42 e0       	ldi	r20, 0x02	; 2
+  e2:	66 e0       	ldi	r22, 0x06	; 6
+  e4:	80 e0       	ldi	r24, 0x00	; 0
+  e6:	0e 94 33 02 	call	0x466	; 0x466 <MGPIO_void_SetPinDirection>
+	
+	MEXTI_void_EnableInterrupt(EXTI_0);
+  ea:	80 e0       	ldi	r24, 0x00	; 0
+  ec:	0e 94 9a 00 	call	0x134	; 0x134 <MEXTI_void_EnableInterrupt>
+	MEXTI_void_EnableInterrupt(EXTI_1);
+  f0:	81 e0       	ldi	r24, 0x01	; 1
+  f2:	0e 94 9a 00 	call	0x134	; 0x134 <MEXTI_void_EnableInterrupt>
+	MEXTI_void_EnableInterrupt(PCINT_0);
+  f6:	82 e0       	ldi	r24, 0x02	; 2
+  f8:	0e 94 9a 00 	call	0x134	; 0x134 <MEXTI_void_EnableInterrupt>
+	MEXTI_void_SetPC_Pin(6, EXTI_PC_PIN_ENABLE);
+  fc:	61 e0       	ldi	r22, 0x01	; 1
+  fe:	86 e0       	ldi	r24, 0x06	; 6
+ 100:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <MEXTI_void_SetPC_Pin>
+	
+	MEXTI_void_SetTrigger(EXTI_0,TRIGGER_LOGICAL_CHANGE);
+ 104:	61 e0       	ldi	r22, 0x01	; 1
+ 106:	80 e0       	ldi	r24, 0x00	; 0
+ 108:	0e 94 c0 00 	call	0x180	; 0x180 <MEXTI_void_SetTrigger>
+	MEXTI_void_SetTrigger(EXTI_1,TRIGGER_LOGICAL_CHANGE);
+ 10c:	61 e0       	ldi	r22, 0x01	; 1
+ 10e:	81 e0       	ldi	r24, 0x01	; 1
+ 110:	0e 94 c0 00 	call	0x180	; 0x180 <MEXTI_void_SetTrigger>
+	
+	MEXTI_void_SetCallBack(EXTI_0,Toggle_LED1);
+ 114:	68 e4       	ldi	r22, 0x48	; 72
+ 116:	70 e0       	ldi	r23, 0x00	; 0
+ 118:	80 e0       	ldi	r24, 0x00	; 0
+ 11a:	0e 94 2e 01 	call	0x25c	; 0x25c <MEXTI_void_SetCallBack>
+	MEXTI_void_SetCallBack(EXTI_1,Toggle_LED2);
+ 11e:	6d e4       	ldi	r22, 0x4D	; 77
+ 120:	70 e0       	ldi	r23, 0x00	; 0
+ 122:	81 e0       	ldi	r24, 0x01	; 1
+ 124:	0e 94 2e 01 	call	0x25c	; 0x25c <MEXTI_void_SetCallBack>
+	MEXTI_void_SetCallBack(PCINT_0,Toggle_LED3);  
+ 128:	62 e5       	ldi	r22, 0x52	; 82
+ 12a:	70 e0       	ldi	r23, 0x00	; 0
+ 12c:	82 e0       	ldi	r24, 0x02	; 2
+ 12e:	0e 94 2e 01 	call	0x25c	; 0x25c <MEXTI_void_SetCallBack>
+ 132:	ff cf       	rjmp	.-2      	; 0x132 <main+0x84>
+
+00000134 <MEXTI_void_EnableInterrupt>:
+			case PCINT_1:
+				SET_BIT(EXTI_FLAGS_REG->EXTI_PCIFR,1);
+				break;
+			
+			case PCINT_2:
+				SET_BIT(EXTI_FLAGS_REG->EXTI_PCIFR,2);
+ 134:	82 30       	cpi	r24, 0x02	; 2
+ 136:	79 f0       	breq	.+30     	; 0x156 <MEXTI_void_EnableInterrupt+0x22>
+ 138:	28 f4       	brcc	.+10     	; 0x144 <MEXTI_void_EnableInterrupt+0x10>
+ 13a:	88 23       	and	r24, r24
+ 13c:	41 f0       	breq	.+16     	; 0x14e <MEXTI_void_EnableInterrupt+0x1a>
+ 13e:	81 30       	cpi	r24, 0x01	; 1
+ 140:	41 f0       	breq	.+16     	; 0x152 <MEXTI_void_EnableInterrupt+0x1e>
+ 142:	08 95       	ret
+ 144:	83 30       	cpi	r24, 0x03	; 3
+ 146:	69 f0       	breq	.+26     	; 0x162 <MEXTI_void_EnableInterrupt+0x2e>
+ 148:	84 30       	cpi	r24, 0x04	; 4
+ 14a:	89 f0       	breq	.+34     	; 0x16e <MEXTI_void_EnableInterrupt+0x3a>
+ 14c:	08 95       	ret
+ 14e:	e8 9a       	sbi	0x1d, 0	; 29
+ 150:	13 c0       	rjmp	.+38     	; 0x178 <MEXTI_void_EnableInterrupt+0x44>
+ 152:	e9 9a       	sbi	0x1d, 1	; 29
+ 154:	11 c0       	rjmp	.+34     	; 0x178 <MEXTI_void_EnableInterrupt+0x44>
+ 156:	e8 e6       	ldi	r30, 0x68	; 104
+ 158:	f0 e0       	ldi	r31, 0x00	; 0
+ 15a:	80 81       	ld	r24, Z
+ 15c:	81 60       	ori	r24, 0x01	; 1
+ 15e:	80 83       	st	Z, r24
+ 160:	0b c0       	rjmp	.+22     	; 0x178 <MEXTI_void_EnableInterrupt+0x44>
+ 162:	e8 e6       	ldi	r30, 0x68	; 104
+ 164:	f0 e0       	ldi	r31, 0x00	; 0
+ 166:	80 81       	ld	r24, Z
+ 168:	82 60       	ori	r24, 0x02	; 2
+ 16a:	80 83       	st	Z, r24
+ 16c:	05 c0       	rjmp	.+10     	; 0x178 <MEXTI_void_EnableInterrupt+0x44>
+ 16e:	e8 e6       	ldi	r30, 0x68	; 104
+ 170:	f0 e0       	ldi	r31, 0x00	; 0
+ 172:	80 81       	ld	r24, Z
+ 174:	84 60       	ori	r24, 0x04	; 4
+ 176:	80 83       	st	Z, r24
+ 178:	8f b7       	in	r24, 0x3f	; 63
+ 17a:	80 68       	ori	r24, 0x80	; 128
+ 17c:	8f bf       	out	0x3f, r24	; 63
+ 17e:	08 95       	ret
+
+00000180 <MEXTI_void_SetTrigger>:
+ 180:	88 23       	and	r24, r24
+ 182:	19 f0       	breq	.+6      	; 0x18a <MEXTI_void_SetTrigger+0xa>
+ 184:	81 30       	cpi	r24, 0x01	; 1
+ 186:	51 f0       	breq	.+20     	; 0x19c <MEXTI_void_SetTrigger+0x1c>
+ 188:	08 95       	ret
+ 18a:	e9 e6       	ldi	r30, 0x69	; 105
+ 18c:	f0 e0       	ldi	r31, 0x00	; 0
+ 18e:	80 81       	ld	r24, Z
+ 190:	8c 7f       	andi	r24, 0xFC	; 252
+ 192:	80 83       	st	Z, r24
+ 194:	80 81       	ld	r24, Z
+ 196:	68 2b       	or	r22, r24
+ 198:	60 83       	st	Z, r22
+ 19a:	08 95       	ret
+ 19c:	e9 e6       	ldi	r30, 0x69	; 105
+ 19e:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a0:	80 81       	ld	r24, Z
+ 1a2:	83 7f       	andi	r24, 0xF3	; 243
+ 1a4:	80 83       	st	Z, r24
+ 1a6:	80 81       	ld	r24, Z
+ 1a8:	66 0f       	add	r22, r22
+ 1aa:	66 0f       	add	r22, r22
+ 1ac:	68 2b       	or	r22, r24
+ 1ae:	60 83       	st	Z, r22
+ 1b0:	08 95       	ret
+
+000001b2 <MEXTI_void_SetPC_Pin>:
+ 1b2:	8f 30       	cpi	r24, 0x0F	; 15
+ 1b4:	09 f4       	brne	.+2      	; 0x1b8 <MEXTI_void_SetPC_Pin+0x6>
+ 1b6:	51 c0       	rjmp	.+162    	; 0x25a <MEXTI_void_SetPC_Pin+0xa8>
+ 1b8:	88 31       	cpi	r24, 0x18	; 24
+ 1ba:	08 f0       	brcs	.+2      	; 0x1be <MEXTI_void_SetPC_Pin+0xc>
+ 1bc:	4e c0       	rjmp	.+156    	; 0x25a <MEXTI_void_SetPC_Pin+0xa8>
+ 1be:	98 2f       	mov	r25, r24
+ 1c0:	96 95       	lsr	r25
+ 1c2:	96 95       	lsr	r25
+ 1c4:	96 95       	lsr	r25
+ 1c6:	91 30       	cpi	r25, 0x01	; 1
+ 1c8:	d9 f0       	breq	.+54     	; 0x200 <MEXTI_void_SetPC_Pin+0x4e>
+ 1ca:	18 f0       	brcs	.+6      	; 0x1d2 <MEXTI_void_SetPC_Pin+0x20>
+ 1cc:	92 30       	cpi	r25, 0x02	; 2
+ 1ce:	79 f1       	breq	.+94     	; 0x22e <MEXTI_void_SetPC_Pin+0x7c>
+ 1d0:	08 95       	ret
+ 1d2:	eb e6       	ldi	r30, 0x6B	; 107
+ 1d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1d6:	90 81       	ld	r25, Z
+ 1d8:	87 70       	andi	r24, 0x07	; 7
+ 1da:	21 e0       	ldi	r18, 0x01	; 1
+ 1dc:	30 e0       	ldi	r19, 0x00	; 0
+ 1de:	08 2e       	mov	r0, r24
+ 1e0:	02 c0       	rjmp	.+4      	; 0x1e6 <MEXTI_void_SetPC_Pin+0x34>
+ 1e2:	22 0f       	add	r18, r18
+ 1e4:	33 1f       	adc	r19, r19
+ 1e6:	0a 94       	dec	r0
+ 1e8:	e2 f7       	brpl	.-8      	; 0x1e2 <MEXTI_void_SetPC_Pin+0x30>
+ 1ea:	20 95       	com	r18
+ 1ec:	29 23       	and	r18, r25
+ 1ee:	20 83       	st	Z, r18
+ 1f0:	90 81       	ld	r25, Z
+ 1f2:	01 c0       	rjmp	.+2      	; 0x1f6 <MEXTI_void_SetPC_Pin+0x44>
+ 1f4:	66 0f       	add	r22, r22
+ 1f6:	8a 95       	dec	r24
+ 1f8:	ea f7       	brpl	.-6      	; 0x1f4 <MEXTI_void_SetPC_Pin+0x42>
+ 1fa:	69 2b       	or	r22, r25
+ 1fc:	60 83       	st	Z, r22
+ 1fe:	08 95       	ret
+ 200:	eb e6       	ldi	r30, 0x6B	; 107
+ 202:	f0 e0       	ldi	r31, 0x00	; 0
+ 204:	91 81       	ldd	r25, Z+1	; 0x01
+ 206:	87 70       	andi	r24, 0x07	; 7
+ 208:	21 e0       	ldi	r18, 0x01	; 1
+ 20a:	30 e0       	ldi	r19, 0x00	; 0
+ 20c:	08 2e       	mov	r0, r24
+ 20e:	02 c0       	rjmp	.+4      	; 0x214 <MEXTI_void_SetPC_Pin+0x62>
+ 210:	22 0f       	add	r18, r18
+ 212:	33 1f       	adc	r19, r19
+ 214:	0a 94       	dec	r0
+ 216:	e2 f7       	brpl	.-8      	; 0x210 <MEXTI_void_SetPC_Pin+0x5e>
+ 218:	20 95       	com	r18
+ 21a:	29 23       	and	r18, r25
+ 21c:	21 83       	std	Z+1, r18	; 0x01
+ 21e:	91 81       	ldd	r25, Z+1	; 0x01
+ 220:	01 c0       	rjmp	.+2      	; 0x224 <MEXTI_void_SetPC_Pin+0x72>
+ 222:	66 0f       	add	r22, r22
+ 224:	8a 95       	dec	r24
+ 226:	ea f7       	brpl	.-6      	; 0x222 <MEXTI_void_SetPC_Pin+0x70>
+ 228:	69 2b       	or	r22, r25
+ 22a:	61 83       	std	Z+1, r22	; 0x01
+ 22c:	08 95       	ret
+ 22e:	eb e6       	ldi	r30, 0x6B	; 107
+ 230:	f0 e0       	ldi	r31, 0x00	; 0
+ 232:	92 81       	ldd	r25, Z+2	; 0x02
+ 234:	87 70       	andi	r24, 0x07	; 7
+ 236:	21 e0       	ldi	r18, 0x01	; 1
+ 238:	30 e0       	ldi	r19, 0x00	; 0
+ 23a:	08 2e       	mov	r0, r24
+ 23c:	02 c0       	rjmp	.+4      	; 0x242 <MEXTI_void_SetPC_Pin+0x90>
+ 23e:	22 0f       	add	r18, r18
+ 240:	33 1f       	adc	r19, r19
+ 242:	0a 94       	dec	r0
+ 244:	e2 f7       	brpl	.-8      	; 0x23e <MEXTI_void_SetPC_Pin+0x8c>
+ 246:	20 95       	com	r18
+ 248:	29 23       	and	r18, r25
+ 24a:	22 83       	std	Z+2, r18	; 0x02
+ 24c:	92 81       	ldd	r25, Z+2	; 0x02
+ 24e:	01 c0       	rjmp	.+2      	; 0x252 <MEXTI_void_SetPC_Pin+0xa0>
+ 250:	66 0f       	add	r22, r22
+ 252:	8a 95       	dec	r24
+ 254:	ea f7       	brpl	.-6      	; 0x250 <MEXTI_void_SetPC_Pin+0x9e>
+ 256:	69 2b       	or	r22, r25
+ 258:	62 83       	std	Z+2, r22	; 0x02
+ 25a:	08 95       	ret
+
+0000025c <MEXTI_void_SetCallBack>:
+	
+}
+	
+void MEXTI_void_SetCallBack (enum EXTI_t Interrupt, void (*CallBack)(void))
+{
+		switch (Interrupt)
+ 25c:	82 30       	cpi	r24, 0x02	; 2
+ 25e:	a9 f0       	breq	.+42     	; 0x28a <MEXTI_void_SetCallBack+0x2e>
+ 260:	28 f4       	brcc	.+10     	; 0x26c <MEXTI_void_SetCallBack+0x10>
+ 262:	88 23       	and	r24, r24
+ 264:	41 f0       	breq	.+16     	; 0x276 <MEXTI_void_SetCallBack+0x1a>
+ 266:	81 30       	cpi	r24, 0x01	; 1
+ 268:	59 f0       	breq	.+22     	; 0x280 <MEXTI_void_SetCallBack+0x24>
+ 26a:	08 95       	ret
+ 26c:	83 30       	cpi	r24, 0x03	; 3
+ 26e:	91 f0       	breq	.+36     	; 0x294 <MEXTI_void_SetCallBack+0x38>
+ 270:	84 30       	cpi	r24, 0x04	; 4
+ 272:	a9 f0       	breq	.+42     	; 0x29e <MEXTI_void_SetCallBack+0x42>
+ 274:	08 95       	ret
+		{
+			case EXTI_0:
+			PEXTI_void_CallBacks[0] = CallBack;
+ 276:	70 93 01 01 	sts	0x0101, r23	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 27a:	60 93 00 01 	sts	0x0100, r22	; 0x800100 <__DATA_REGION_ORIGIN__>
+			break;
+ 27e:	08 95       	ret
+			
+			case EXTI_1:
+			PEXTI_void_CallBacks[1] = CallBack;
+ 280:	70 93 03 01 	sts	0x0103, r23	; 0x800103 <__DATA_REGION_ORIGIN__+0x3>
+ 284:	60 93 02 01 	sts	0x0102, r22	; 0x800102 <__DATA_REGION_ORIGIN__+0x2>
+			break;
+ 288:	08 95       	ret
+			
+			case PCINT_0:
+			PEXTI_void_CallBacks[2] = CallBack;
+ 28a:	70 93 05 01 	sts	0x0105, r23	; 0x800105 <__DATA_REGION_ORIGIN__+0x5>
+ 28e:	60 93 04 01 	sts	0x0104, r22	; 0x800104 <__DATA_REGION_ORIGIN__+0x4>
+			break;
+ 292:	08 95       	ret
+			
+			case PCINT_1:
+			PEXTI_void_CallBacks[3] = CallBack;
+ 294:	70 93 07 01 	sts	0x0107, r23	; 0x800107 <__DATA_REGION_ORIGIN__+0x7>
+ 298:	60 93 06 01 	sts	0x0106, r22	; 0x800106 <__DATA_REGION_ORIGIN__+0x6>
+			break;
+ 29c:	08 95       	ret
+			
+			case PCINT_2:
+			PEXTI_void_CallBacks[4] = CallBack;
+ 29e:	70 93 09 01 	sts	0x0109, r23	; 0x800109 <__DATA_REGION_ORIGIN__+0x9>
+ 2a2:	60 93 08 01 	sts	0x0108, r22	; 0x800108 <__DATA_REGION_ORIGIN__+0x8>
+ 2a6:	08 95       	ret
+
+000002a8 <__vector_1>:
+		}
+		
+	}
+
+void EXTI_VECTOR_ISR_EXTIO  (void)
+{
+ 2a8:	1f 92       	push	r1
+ 2aa:	0f 92       	push	r0
+ 2ac:	0f b6       	in	r0, 0x3f	; 63
+ 2ae:	0f 92       	push	r0
+ 2b0:	11 24       	eor	r1, r1
+ 2b2:	2f 93       	push	r18
+ 2b4:	3f 93       	push	r19
+ 2b6:	4f 93       	push	r20
+ 2b8:	5f 93       	push	r21
+ 2ba:	6f 93       	push	r22
+ 2bc:	7f 93       	push	r23
+ 2be:	8f 93       	push	r24
+ 2c0:	9f 93       	push	r25
+ 2c2:	af 93       	push	r26
+ 2c4:	bf 93       	push	r27
+ 2c6:	ef 93       	push	r30
+ 2c8:	ff 93       	push	r31
+	
+	if(PEXTI_void_CallBacks[0] != 0)
+ 2ca:	e0 91 00 01 	lds	r30, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 2ce:	f0 91 01 01 	lds	r31, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 2d2:	30 97       	sbiw	r30, 0x00	; 0
+ 2d4:	09 f0       	breq	.+2      	; 0x2d8 <__vector_1+0x30>
+	{
+		PEXTI_void_CallBacks[0]();
+ 2d6:	09 95       	icall
+	}
+}
+ 2d8:	ff 91       	pop	r31
+ 2da:	ef 91       	pop	r30
+ 2dc:	bf 91       	pop	r27
+ 2de:	af 91       	pop	r26
+ 2e0:	9f 91       	pop	r25
+ 2e2:	8f 91       	pop	r24
+ 2e4:	7f 91       	pop	r23
+ 2e6:	6f 91       	pop	r22
+ 2e8:	5f 91       	pop	r21
+ 2ea:	4f 91       	pop	r20
+ 2ec:	3f 91       	pop	r19
+ 2ee:	2f 91       	pop	r18
+ 2f0:	0f 90       	pop	r0
+ 2f2:	0f be       	out	0x3f, r0	; 63
+ 2f4:	0f 90       	pop	r0
+ 2f6:	1f 90       	pop	r1
+ 2f8:	18 95       	reti
+
+000002fa <__vector_2>:
+void EXTI_VECTOR_ISR_EXTI1  (void)
+{
+ 2fa:	1f 92       	push	r1
+ 2fc:	0f 92       	push	r0
+ 2fe:	0f b6       	in	r0, 0x3f	; 63
+ 300:	0f 92       	push	r0
+ 302:	11 24       	eor	r1, r1
+ 304:	2f 93       	push	r18
+ 306:	3f 93       	push	r19
+ 308:	4f 93       	push	r20
+ 30a:	5f 93       	push	r21
+ 30c:	6f 93       	push	r22
+ 30e:	7f 93       	push	r23
+ 310:	8f 93       	push	r24
+ 312:	9f 93       	push	r25
+ 314:	af 93       	push	r26
+ 316:	bf 93       	push	r27
+ 318:	ef 93       	push	r30
+ 31a:	ff 93       	push	r31
+	
+	if(PEXTI_void_CallBacks[1] != 0)
+ 31c:	e0 91 02 01 	lds	r30, 0x0102	; 0x800102 <__DATA_REGION_ORIGIN__+0x2>
+ 320:	f0 91 03 01 	lds	r31, 0x0103	; 0x800103 <__DATA_REGION_ORIGIN__+0x3>
+ 324:	30 97       	sbiw	r30, 0x00	; 0
+ 326:	09 f0       	breq	.+2      	; 0x32a <__vector_2+0x30>
+	{
+		PEXTI_void_CallBacks[1]();
+ 328:	09 95       	icall
+	}
+}
+ 32a:	ff 91       	pop	r31
+ 32c:	ef 91       	pop	r30
+ 32e:	bf 91       	pop	r27
+ 330:	af 91       	pop	r26
+ 332:	9f 91       	pop	r25
+ 334:	8f 91       	pop	r24
+ 336:	7f 91       	pop	r23
+ 338:	6f 91       	pop	r22
+ 33a:	5f 91       	pop	r21
+ 33c:	4f 91       	pop	r20
+ 33e:	3f 91       	pop	r19
+ 340:	2f 91       	pop	r18
+ 342:	0f 90       	pop	r0
+ 344:	0f be       	out	0x3f, r0	; 63
+ 346:	0f 90       	pop	r0
+ 348:	1f 90       	pop	r1
+ 34a:	18 95       	reti
+
+0000034c <__vector_3>:
+void EXTI_VECTOR_ISR_PCINT0 (void)
+{
+ 34c:	1f 92       	push	r1
+ 34e:	0f 92       	push	r0
+ 350:	0f b6       	in	r0, 0x3f	; 63
+ 352:	0f 92       	push	r0
+ 354:	11 24       	eor	r1, r1
+ 356:	2f 93       	push	r18
+ 358:	3f 93       	push	r19
+ 35a:	4f 93       	push	r20
+ 35c:	5f 93       	push	r21
+ 35e:	6f 93       	push	r22
+ 360:	7f 93       	push	r23
+ 362:	8f 93       	push	r24
+ 364:	9f 93       	push	r25
+ 366:	af 93       	push	r26
+ 368:	bf 93       	push	r27
+ 36a:	ef 93       	push	r30
+ 36c:	ff 93       	push	r31
+	
+	if(PEXTI_void_CallBacks[2] != 0)
+ 36e:	e0 91 04 01 	lds	r30, 0x0104	; 0x800104 <__DATA_REGION_ORIGIN__+0x4>
+ 372:	f0 91 05 01 	lds	r31, 0x0105	; 0x800105 <__DATA_REGION_ORIGIN__+0x5>
+ 376:	30 97       	sbiw	r30, 0x00	; 0
+ 378:	09 f0       	breq	.+2      	; 0x37c <__vector_3+0x30>
+	{
+		PEXTI_void_CallBacks[2]();
+ 37a:	09 95       	icall
+	}
+}
+ 37c:	ff 91       	pop	r31
+ 37e:	ef 91       	pop	r30
+ 380:	bf 91       	pop	r27
+ 382:	af 91       	pop	r26
+ 384:	9f 91       	pop	r25
+ 386:	8f 91       	pop	r24
+ 388:	7f 91       	pop	r23
+ 38a:	6f 91       	pop	r22
+ 38c:	5f 91       	pop	r21
+ 38e:	4f 91       	pop	r20
+ 390:	3f 91       	pop	r19
+ 392:	2f 91       	pop	r18
+ 394:	0f 90       	pop	r0
+ 396:	0f be       	out	0x3f, r0	; 63
+ 398:	0f 90       	pop	r0
+ 39a:	1f 90       	pop	r1
+ 39c:	18 95       	reti
+
+0000039e <__vector_4>:
+void EXTI_VECTOR_ISR_PCINT1 (void)
+{
+ 39e:	1f 92       	push	r1
+ 3a0:	0f 92       	push	r0
+ 3a2:	0f b6       	in	r0, 0x3f	; 63
+ 3a4:	0f 92       	push	r0
+ 3a6:	11 24       	eor	r1, r1
+ 3a8:	2f 93       	push	r18
+ 3aa:	3f 93       	push	r19
+ 3ac:	4f 93       	push	r20
+ 3ae:	5f 93       	push	r21
+ 3b0:	6f 93       	push	r22
+ 3b2:	7f 93       	push	r23
+ 3b4:	8f 93       	push	r24
+ 3b6:	9f 93       	push	r25
+ 3b8:	af 93       	push	r26
+ 3ba:	bf 93       	push	r27
+ 3bc:	ef 93       	push	r30
+ 3be:	ff 93       	push	r31
+	
+	if(PEXTI_void_CallBacks[3] != 0)
+ 3c0:	e0 91 06 01 	lds	r30, 0x0106	; 0x800106 <__DATA_REGION_ORIGIN__+0x6>
+ 3c4:	f0 91 07 01 	lds	r31, 0x0107	; 0x800107 <__DATA_REGION_ORIGIN__+0x7>
+ 3c8:	30 97       	sbiw	r30, 0x00	; 0
+ 3ca:	09 f0       	breq	.+2      	; 0x3ce <__vector_4+0x30>
+	{
+		PEXTI_void_CallBacks[3]();
+ 3cc:	09 95       	icall
+	}
+}
+ 3ce:	ff 91       	pop	r31
+ 3d0:	ef 91       	pop	r30
+ 3d2:	bf 91       	pop	r27
+ 3d4:	af 91       	pop	r26
+ 3d6:	9f 91       	pop	r25
+ 3d8:	8f 91       	pop	r24
+ 3da:	7f 91       	pop	r23
+ 3dc:	6f 91       	pop	r22
+ 3de:	5f 91       	pop	r21
+ 3e0:	4f 91       	pop	r20
+ 3e2:	3f 91       	pop	r19
+ 3e4:	2f 91       	pop	r18
+ 3e6:	0f 90       	pop	r0
+ 3e8:	0f be       	out	0x3f, r0	; 63
+ 3ea:	0f 90       	pop	r0
+ 3ec:	1f 90       	pop	r1
+ 3ee:	18 95       	reti
+
+000003f0 <__vector_5>:
+void EXTI_VECTOR_ISR_PCINT2 (void)
+{
+ 3f0:	1f 92       	push	r1
+ 3f2:	0f 92       	push	r0
+ 3f4:	0f b6       	in	r0, 0x3f	; 63
+ 3f6:	0f 92       	push	r0
+ 3f8:	11 24       	eor	r1, r1
+ 3fa:	2f 93       	push	r18
+ 3fc:	3f 93       	push	r19
+ 3fe:	4f 93       	push	r20
+ 400:	5f 93       	push	r21
+ 402:	6f 93       	push	r22
+ 404:	7f 93       	push	r23
+ 406:	8f 93       	push	r24
+ 408:	9f 93       	push	r25
+ 40a:	af 93       	push	r26
+ 40c:	bf 93       	push	r27
+ 40e:	ef 93       	push	r30
+ 410:	ff 93       	push	r31
+	
+	if(PEXTI_void_CallBacks[4] != 0)
+ 412:	e0 91 08 01 	lds	r30, 0x0108	; 0x800108 <__DATA_REGION_ORIGIN__+0x8>
+ 416:	f0 91 09 01 	lds	r31, 0x0109	; 0x800109 <__DATA_REGION_ORIGIN__+0x9>
+ 41a:	30 97       	sbiw	r30, 0x00	; 0
+ 41c:	09 f0       	breq	.+2      	; 0x420 <__EEPROM_REGION_LENGTH__+0x20>
+	{
+		PEXTI_void_CallBacks[4]();
+ 41e:	09 95       	icall
+	}
+ 420:	ff 91       	pop	r31
+ 422:	ef 91       	pop	r30
+ 424:	bf 91       	pop	r27
+ 426:	af 91       	pop	r26
+ 428:	9f 91       	pop	r25
+ 42a:	8f 91       	pop	r24
+ 42c:	7f 91       	pop	r23
+ 42e:	6f 91       	pop	r22
+ 430:	5f 91       	pop	r21
+ 432:	4f 91       	pop	r20
+ 434:	3f 91       	pop	r19
+ 436:	2f 91       	pop	r18
+ 438:	0f 90       	pop	r0
+ 43a:	0f be       	out	0x3f, r0	; 63
+ 43c:	0f 90       	pop	r0
+ 43e:	1f 90       	pop	r1
+ 440:	18 95       	reti
+
+00000442 <PGPIO_PRegister_t_GetPtrToReg>:
+	volatile REGISTER_t* local_PReg =0;
+		local_PReg = PGPIO_PRegister_t_GetPtrToReg(PortID);
+		if (local_PReg == 0)
+			return;
+		local_PReg->PORT=Value;
+	}
+ 442:	81 30       	cpi	r24, 0x01	; 1
+ 444:	21 f0       	breq	.+8      	; 0x44e <PGPIO_PRegister_t_GetPtrToReg+0xc>
+ 446:	60 f0       	brcs	.+24     	; 0x460 <PGPIO_PRegister_t_GetPtrToReg+0x1e>
+ 448:	82 30       	cpi	r24, 0x02	; 2
+ 44a:	21 f0       	breq	.+8      	; 0x454 <PGPIO_PRegister_t_GetPtrToReg+0x12>
+ 44c:	06 c0       	rjmp	.+12     	; 0x45a <PGPIO_PRegister_t_GetPtrToReg+0x18>
+ 44e:	86 e2       	ldi	r24, 0x26	; 38
+ 450:	90 e0       	ldi	r25, 0x00	; 0
+ 452:	08 95       	ret
+ 454:	89 e2       	ldi	r24, 0x29	; 41
+ 456:	90 e0       	ldi	r25, 0x00	; 0
+ 458:	08 95       	ret
+ 45a:	80 e0       	ldi	r24, 0x00	; 0
+ 45c:	90 e0       	ldi	r25, 0x00	; 0
+ 45e:	08 95       	ret
+ 460:	83 e2       	ldi	r24, 0x23	; 35
+ 462:	90 e0       	ldi	r25, 0x00	; 0
+ 464:	08 95       	ret
+
+00000466 <MGPIO_void_SetPinDirection>:
+ 466:	cf 93       	push	r28
+ 468:	df 93       	push	r29
+ 46a:	d6 2f       	mov	r29, r22
+ 46c:	c4 2f       	mov	r28, r20
+ 46e:	0e 94 21 02 	call	0x442	; 0x442 <PGPIO_PRegister_t_GetPtrToReg>
+ 472:	fc 01       	movw	r30, r24
+ 474:	89 2b       	or	r24, r25
+ 476:	a9 f1       	breq	.+106    	; 0x4e2 <MGPIO_void_SetPinDirection+0x7c>
+ 478:	c1 30       	cpi	r28, 0x01	; 1
+ 47a:	a1 f0       	breq	.+40     	; 0x4a4 <MGPIO_void_SetPinDirection+0x3e>
+ 47c:	18 f0       	brcs	.+6      	; 0x484 <MGPIO_void_SetPinDirection+0x1e>
+ 47e:	c2 30       	cpi	r28, 0x02	; 2
+ 480:	09 f1       	breq	.+66     	; 0x4c4 <MGPIO_void_SetPinDirection+0x5e>
+ 482:	2f c0       	rjmp	.+94     	; 0x4e2 <MGPIO_void_SetPinDirection+0x7c>
+ 484:	21 81       	ldd	r18, Z+1	; 0x01
+ 486:	81 e0       	ldi	r24, 0x01	; 1
+ 488:	90 e0       	ldi	r25, 0x00	; 0
+ 48a:	02 c0       	rjmp	.+4      	; 0x490 <MGPIO_void_SetPinDirection+0x2a>
+ 48c:	88 0f       	add	r24, r24
+ 48e:	99 1f       	adc	r25, r25
+ 490:	da 95       	dec	r29
+ 492:	e2 f7       	brpl	.-8      	; 0x48c <MGPIO_void_SetPinDirection+0x26>
+ 494:	80 95       	com	r24
+ 496:	92 2f       	mov	r25, r18
+ 498:	98 23       	and	r25, r24
+ 49a:	91 83       	std	Z+1, r25	; 0x01
+ 49c:	92 81       	ldd	r25, Z+2	; 0x02
+ 49e:	89 23       	and	r24, r25
+ 4a0:	82 83       	std	Z+2, r24	; 0x02
+ 4a2:	1f c0       	rjmp	.+62     	; 0x4e2 <MGPIO_void_SetPinDirection+0x7c>
+ 4a4:	21 81       	ldd	r18, Z+1	; 0x01
+ 4a6:	81 e0       	ldi	r24, 0x01	; 1
+ 4a8:	90 e0       	ldi	r25, 0x00	; 0
+ 4aa:	02 c0       	rjmp	.+4      	; 0x4b0 <MGPIO_void_SetPinDirection+0x4a>
+ 4ac:	88 0f       	add	r24, r24
+ 4ae:	99 1f       	adc	r25, r25
+ 4b0:	da 95       	dec	r29
+ 4b2:	e2 f7       	brpl	.-8      	; 0x4ac <MGPIO_void_SetPinDirection+0x46>
+ 4b4:	92 2f       	mov	r25, r18
+ 4b6:	98 2b       	or	r25, r24
+ 4b8:	91 83       	std	Z+1, r25	; 0x01
+ 4ba:	92 81       	ldd	r25, Z+2	; 0x02
+ 4bc:	80 95       	com	r24
+ 4be:	89 23       	and	r24, r25
+ 4c0:	82 83       	std	Z+2, r24	; 0x02
+ 4c2:	0f c0       	rjmp	.+30     	; 0x4e2 <MGPIO_void_SetPinDirection+0x7c>
+ 4c4:	21 81       	ldd	r18, Z+1	; 0x01
+ 4c6:	81 e0       	ldi	r24, 0x01	; 1
+ 4c8:	90 e0       	ldi	r25, 0x00	; 0
+ 4ca:	02 c0       	rjmp	.+4      	; 0x4d0 <MGPIO_void_SetPinDirection+0x6a>
+ 4cc:	88 0f       	add	r24, r24
+ 4ce:	99 1f       	adc	r25, r25
+ 4d0:	da 95       	dec	r29
+ 4d2:	e2 f7       	brpl	.-8      	; 0x4cc <MGPIO_void_SetPinDirection+0x66>
+ 4d4:	98 2f       	mov	r25, r24
+ 4d6:	90 95       	com	r25
+ 4d8:	92 23       	and	r25, r18
+ 4da:	91 83       	std	Z+1, r25	; 0x01
+ 4dc:	92 81       	ldd	r25, Z+2	; 0x02
+ 4de:	89 2b       	or	r24, r25
+ 4e0:	82 83       	std	Z+2, r24	; 0x02
+ 4e2:	df 91       	pop	r29
+ 4e4:	cf 91       	pop	r28
+ 4e6:	08 95       	ret
+
+000004e8 <MGPIO_void_TogglePin>:
+
+void MGPIO_void_TogglePin (enum GPIOPORT_t PortID, u8 PinNumber)
+{
+ 4e8:	cf 93       	push	r28
+ 4ea:	c6 2f       	mov	r28, r22
+	volatile REGISTER_t* local_PReg =0;
+	local_PReg = PGPIO_PRegister_t_GetPtrToReg(PortID);
+ 4ec:	0e 94 21 02 	call	0x442	; 0x442 <PGPIO_PRegister_t_GetPtrToReg>
+	if (local_PReg == 0)
+ 4f0:	00 97       	sbiw	r24, 0x00	; 0
+ 4f2:	59 f0       	breq	.+22     	; 0x50a <MGPIO_void_TogglePin+0x22>
+		return;
+	TOG_BIT(local_PReg->PORT,PinNumber);
+ 4f4:	fc 01       	movw	r30, r24
+ 4f6:	42 81       	ldd	r20, Z+2	; 0x02
+ 4f8:	21 e0       	ldi	r18, 0x01	; 1
+ 4fa:	30 e0       	ldi	r19, 0x00	; 0
+ 4fc:	02 c0       	rjmp	.+4      	; 0x502 <MGPIO_void_TogglePin+0x1a>
+ 4fe:	22 0f       	add	r18, r18
+ 500:	33 1f       	adc	r19, r19
+ 502:	ca 95       	dec	r28
+ 504:	e2 f7       	brpl	.-8      	; 0x4fe <MGPIO_void_TogglePin+0x16>
+ 506:	24 27       	eor	r18, r20
+ 508:	22 83       	std	Z+2, r18	; 0x02
+
+	}
+ 50a:	cf 91       	pop	r28
+ 50c:	08 95       	ret
+
+0000050e <_exit>:
+ 50e:	f8 94       	cli
+
+00000510 <__stop_program>:
+ 510:	ff cf       	rjmp	.-2      	; 0x510 <__stop_program>
